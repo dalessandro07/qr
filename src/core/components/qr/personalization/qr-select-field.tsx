@@ -1,0 +1,69 @@
+"use client";
+
+import React, { memo } from "react";
+import { Label } from "@/core/components/ui/label";
+import {
+	Select,
+	SelectContent,
+	SelectItem,
+	SelectTrigger,
+	SelectValue,
+} from "@/core/components/ui/select";
+import { useQRStore } from "@/core/store/qr-store";
+
+interface QRSelectFieldProps<T extends string> {
+	label: string;
+	storeKey:
+		| "errorCorrectionLevel"
+		| "shape"
+		| "dotsType"
+		| "cornersSquareType"
+		| "cornersDotType"
+		| "imageFormat";
+	options: { value: T; label: string }[];
+}
+
+const SETTER_MAP = {
+	errorCorrectionLevel: (s: ReturnType<typeof useQRStore.getState>) =>
+		s.setErrorCorrectionLevel,
+	shape: (s: ReturnType<typeof useQRStore.getState>) => s.setShape,
+	dotsType: (s: ReturnType<typeof useQRStore.getState>) => s.setDotsType,
+	cornersSquareType: (s: ReturnType<typeof useQRStore.getState>) =>
+		s.setCornersSquareType,
+	cornersDotType: (s: ReturnType<typeof useQRStore.getState>) =>
+		s.setCornersDotType,
+	imageFormat: (s: ReturnType<typeof useQRStore.getState>) => s.setImageFormat,
+} as const;
+
+export const QRSelectField = memo(function QRSelectField<T extends string>({
+	label,
+	storeKey,
+	options,
+}: QRSelectFieldProps<T>) {
+	const value = useQRStore((s) => s[storeKey]) as T;
+
+	return (
+		<div className="flex flex-col gap-2">
+			<Label>{label}</Label>
+			<Select
+				value={value}
+				onValueChange={(v) =>
+					(SETTER_MAP[storeKey](useQRStore.getState()) as (v: T) => void)(
+						v as T,
+					)
+				}
+			>
+				<SelectTrigger className="w-full">
+					<SelectValue />
+				</SelectTrigger>
+				<SelectContent>
+					{options.map((opt) => (
+						<SelectItem key={opt.value} value={opt.value}>
+							{opt.label}
+						</SelectItem>
+					))}
+				</SelectContent>
+			</Select>
+		</div>
+	);
+}) as <T extends string>(props: QRSelectFieldProps<T>) => React.ReactElement;
