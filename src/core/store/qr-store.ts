@@ -60,7 +60,7 @@ export const useQRStore = create<QRStoreState & QRStoreActions>()(
 	persist(
 		(set) => ({
 			content: "",
-			width: (DEFAULT_QR_OPTIONS.width ?? 400) as number,
+			width: (DEFAULT_QR_OPTIONS.width ?? 600) as number,
 			margin: (DEFAULT_QR_OPTIONS.margin ?? 4) as number,
 			errorCorrectionLevel: (DEFAULT_QR_OPTIONS.errorCorrectionLevel ??
 				"M") as ErrorCorrectionLevel,
@@ -99,7 +99,7 @@ export const useQRStore = create<QRStoreState & QRStoreActions>()(
 			resetAll: () => {
 				set({
 					content: "",
-					width: (DEFAULT_QR_OPTIONS.width ?? 400) as number,
+					width: (DEFAULT_QR_OPTIONS.width ?? 600) as number,
 					margin: (DEFAULT_QR_OPTIONS.margin ?? 4) as number,
 					errorCorrectionLevel: (DEFAULT_QR_OPTIONS.errorCorrectionLevel ??
 						"M") as ErrorCorrectionLevel,

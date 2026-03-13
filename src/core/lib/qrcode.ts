@@ -1,4 +1,12 @@
 import QRCodeStyling from "qr-code-styling";
+import qrcodeGenerator from "qrcode-generator";
+
+// Configurar codificación UTF-8 para caracteres como ñ, á, emojis, etc.
+// Por defecto qrcode-generator usa Latin-1 que trunca caracteres multibyte
+if (qrcodeGenerator.stringToBytesFuncs?.["UTF-8"]) {
+	qrcodeGenerator.stringToBytes = qrcodeGenerator.stringToBytesFuncs["UTF-8"];
+}
+
 import type {
 	CornerDotType,
 	CornerSquareType,
@@ -29,7 +37,7 @@ export async function generateQRCode(
 	data: string,
 	options?: Partial<QRCodeOptions>,
 ) {
-	const width = options?.width ?? DEFAULT_QR_OPTIONS.width ?? 400;
+	const width = options?.width ?? DEFAULT_QR_OPTIONS.width ?? 600;
 	const margin = options?.margin ?? DEFAULT_QR_OPTIONS.margin ?? 4;
 	const colorDark =
 		options?.color?.dark ?? DEFAULT_QR_OPTIONS.color?.dark ?? "#000000ff";

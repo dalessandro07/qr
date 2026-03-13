@@ -45,7 +45,7 @@ export interface QRCodeOptions {
 export const DEFAULT_QR_OPTIONS: QRCodeOptions = {
 	errorCorrectionLevel: "M",
 	margin: 4,
-	width: 400,
+	width: 600,
 	color: {
 		dark: "#000000ff",
 		light: "#ffffffff",
