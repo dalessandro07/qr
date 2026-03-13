@@ -26,7 +26,7 @@ function FormGenerator() {
 					</div>
 				</section>
 
-				<aside className="flex w-full shrink-0 flex-col border-t border-border py-6 lg:sticky lg:top-6 lg:w-80 lg:self-start lg:border-t-0 lg:border-l lg:pl-8">
+				<aside className="flex w-full min-h-0 flex-1 flex-col border-t border-border py-6 lg:sticky lg:top-6 lg:min-w-80 lg:max-w-2xl lg:border-t-0 lg:border-l lg:pl-8">
 					<QRPreview />
 				</aside>
 			</div>

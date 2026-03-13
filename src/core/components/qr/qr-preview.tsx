@@ -16,24 +16,24 @@ export function QRPreview() {
 		: "Generando...";
 
 	return (
-		<div className="flex w-full flex-col gap-4 min-h-64">
+		<div className="flex min-h-0 w-full flex-1 flex-col gap-4">
 			<Label>Vista previa</Label>
 			{!qrCode ? (
 				<div
-					className={`flex flex-1 items-center justify-center bg-muted text-muted-foreground text-sm text-center p-6 ${isLoading ? "animate-pulse" : ""}`}
+					className={`flex min-h-48 flex-1 items-center justify-center bg-muted p-6 text-center text-sm text-muted-foreground ${isLoading ? "animate-pulse" : ""}`}
 				>
 					{placeholderText}
 				</div>
 			) : (
-				<div className="flex w-full flex-col gap-4">
-					<div className="relative w-full aspect-square overflow-hidden bg-muted">
+				<div className="flex min-h-0 flex-1 flex-col gap-4">
+					<div className="relative w-full aspect-square min-w-0 overflow-hidden bg-muted">
 						<Image
 							className="object-contain"
 							src={qrCode}
 							alt="Código QR generado"
 							fill
-							quality={100}
-							sizes="320px"
+							quality={75}
+							sizes="(min-width: 1024px) 672px, 100vw"
 						/>
 					</div>
 					<div className="flex flex-col sm:flex-row gap-2 w-full">
@@ -41,7 +41,7 @@ export function QRPreview() {
 							type="button"
 							onClick={download}
 							variant="default"
-							className="flex-1"
+							className="min-h-11 flex-1"
 						>
 							Descargar QR
 						</Button>
@@ -49,7 +49,7 @@ export function QRPreview() {
 							type="button"
 							onClick={resetAll}
 							variant="outline"
-							className="flex-1"
+							className="min-h-11 flex-1"
 						>
 							Empezar de nuevo
 						</Button>
