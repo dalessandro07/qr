@@ -1,5 +1,6 @@
 "use client";
 
+import { Info } from "lucide-react";
 import React, { memo } from "react";
 import { Label } from "@/core/components/ui/label";
 import {
@@ -9,10 +10,16 @@ import {
 	SelectTrigger,
 	SelectValue,
 } from "@/core/components/ui/select";
+import {
+	Tooltip,
+	TooltipContent,
+	TooltipTrigger,
+} from "@/core/components/ui/tooltip";
 import { useQRStore } from "@/core/store/qr-store";
 
 interface QRSelectFieldProps<T extends string> {
 	label: string;
+	description?: string;
 	storeKey:
 		| "errorCorrectionLevel"
 		| "shape"
@@ -37,6 +44,7 @@ const SETTER_MAP = {
 
 export const QRSelectField = memo(function QRSelectField<T extends string>({
 	label,
+	description,
 	storeKey,
 	options,
 }: QRSelectFieldProps<T>) {
@@ -44,7 +52,22 @@ export const QRSelectField = memo(function QRSelectField<T extends string>({
 
 	return (
 		<div className="flex flex-col gap-2">
-			<Label>{label}</Label>
+			<div className="flex items-center gap-1.5">
+				<Label>{label}</Label>
+				{description && (
+					<Tooltip>
+						<TooltipTrigger
+							className="cursor-help rounded p-0.5 text-muted-foreground hover:text-foreground"
+							aria-label={description}
+						>
+							<Info className="size-4 shrink-0" />
+						</TooltipTrigger>
+						<TooltipContent side="top" className="max-w-xs text-balance">
+							{description}
+						</TooltipContent>
+					</Tooltip>
+				)}
+			</div>
 			<Select
 				value={value}
 				onValueChange={(v) =>

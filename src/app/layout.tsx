@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono, Inter } from "next/font/google";
 import "./globals.css";
 import { Footer } from "@/core/components/footer";
+import { TooltipProvider } from "@/core/components/ui/tooltip";
 import { APP_DESCRIPTION, APP_NAME } from "@/core/lib/constants";
 import { cn } from "@/core/lib/utils";
 
@@ -32,8 +33,10 @@ export default function RootLayout({
 			<body
 				className={`${geistSans.variable} ${geistMono.variable} flex min-h-dvh flex-col antialiased`}
 			>
-				<div className="flex-1">{children}</div>
-				<Footer />
+				<TooltipProvider>
+					<div className="flex-1">{children}</div>
+					<Footer />
+				</TooltipProvider>
 			</body>
 		</html>
 	);

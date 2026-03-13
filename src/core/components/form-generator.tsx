@@ -1,10 +1,6 @@
 "use client";
 
-import {
-	QRContentInput,
-	QRPersonalizationPanel,
-	QRPreview,
-} from "@/core/components/qr";
+import { QRPersonalizationPanel, QRPreview } from "@/core/components/qr";
 import { useQRGenerator } from "@/core/hooks";
 import { APP_DESCRIPTION, APP_NAME } from "@/core/lib/constants";
 
@@ -20,7 +16,6 @@ function FormGenerator() {
 						<p className="text-sm text-muted-foreground">{APP_DESCRIPTION}</p>
 					</header>
 					<div className="flex flex-col gap-6">
-						<QRContentInput />
 						<QRPersonalizationPanel />
 
 						{error && (
