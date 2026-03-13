@@ -32,7 +32,7 @@ export function QRPreview() {
 							src={qrCode}
 							alt="Código QR generado"
 							fill
-							unoptimized
+							quality={100}
 							sizes="320px"
 						/>
 					</div>

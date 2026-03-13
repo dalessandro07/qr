@@ -1,4 +1,4 @@
-const DEBOUNCE_MS = 500;
+const DEBOUNCE_MS = 100;
 
 export function createDebouncedStorage(
 	storage: Storage,

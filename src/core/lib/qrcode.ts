@@ -23,7 +23,7 @@ function blobToDataUrl(blob: Blob): Promise<string> {
 	});
 }
 
-const PREVIEW_SIZE = 96;
+const PREVIEW_SIZE = 400;
 
 export async function generateQRCode(
 	data: string,
